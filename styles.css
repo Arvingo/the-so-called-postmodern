@@ -9,12 +9,12 @@ body {
   place-items: center;
   background: canvas;
   color: canvastext;
+  transition:all 0.7s ease;
 }
 
 div.textBlock {
   left: 0;
   top: 0;
-  background: canvas;
   color: canvastext;
   position: absolute;
   max-width: 60vw;

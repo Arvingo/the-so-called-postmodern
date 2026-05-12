@@ -3,7 +3,6 @@ import type { PageInfo } from "./PageInfo.js";
 import type { TextInfo } from "./TextInfo.js";
 
 let progress = 0;
-let initialAnimation: string;
 
 const app = document.getElementById("app") as HTMLElement;
 
@@ -22,7 +21,14 @@ function showCurrentText(initial = false) {
       renderText(info);
     }
   }
+  if (curPageInfo.bgColor) {
+    changeBackgroundColor(curPageInfo.bgColor);
+  }
   progress++;
+}
+
+function changeBackgroundColor(color: string) {
+  document.body.style.backgroundColor = color;
 }
 
 function flushOldText(curPageInfo: PageInfo) {
@@ -56,7 +62,6 @@ function renderText(info: TextInfo) {
 }
 
 function bootRenderText(info: TextInfo, display: HTMLElement) { 
-  initialAnimation = display.style.transition;
   display.textContent = info.text;
   changeTextProperties(info);
 }
