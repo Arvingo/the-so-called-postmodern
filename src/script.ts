@@ -1,22 +1,68 @@
-import { defaultTextInfo, textInfos } from "./data/data.js";
+import { pageInfos } from "./data/PageInfoBank.js";
+import type { PageInfo } from "./PageInfo.js";
 import type { TextInfo } from "./TextInfo.js";
 
 let progress = 0;
 let initialAnimation: string;
 
-const display = document.getElementById("mainDisplay") as HTMLDivElement;
+const app = document.getElementById("app") as HTMLElement;
+
+const elements = new Map<string, HTMLDivElement>();
 
 showCurrentText(true);
 
 function showCurrentText(initial = false) {
-  const info = textInfos[progress] || defaultTextInfo;
-  if (initial) {
-    initialAnimation = display.style.transition;
-    display.style.transition = "none";
-    display.textContent = info.text;
-  } else {
-    scrambleText(display, info.text);
+  flushOldText(pageInfos[progress]);
+  const curPageInfo = pageInfos[progress];
+  for (const info of curPageInfo.textBlocks) {
+    const el = createTextElement(info);
+    if (initial) {
+      bootRenderText(info, el);
+    } else {
+      renderText(info);
+    }
   }
+  progress++;
+}
+
+function flushOldText(curPageInfo: PageInfo) {
+  const textBlocks = curPageInfo.textBlocks;
+  const nextIds = new Set(textBlocks.map(b => b.id));
+
+  for (const [id, el] of elements) {
+    if (!nextIds.has(id)) {
+      scrambleOut(el);
+      elements.delete(id);
+    }
+  }
+}
+
+function createTextElement(info: TextInfo) {
+  if (elements.has(info.id)) { //only one of each id allowed
+    return elements.get(info.id) as HTMLDivElement;
+  }
+  const el = document.createElement("div");
+  el.className = "textBlock";
+  app.appendChild(el);
+  elements.set(info.id, el);
+  return el;
+}
+
+function renderText(info: TextInfo) {
+  const display = elements.get(info.id) || createTextElement(info);
+  display.classList.add("easing");
+  scrambleText(display, info.text);
+  changeTextProperties(info);
+}
+
+function bootRenderText(info: TextInfo, display: HTMLElement) { 
+  initialAnimation = display.style.transition;
+  display.textContent = info.text;
+  changeTextProperties(info);
+}
+
+function changeTextProperties(info: TextInfo) {
+  const display = elements.get(info.id) || createTextElement(info);
   display.style.color = info.color;
   display.style.fontSize = info.size;
   const safe = populateOptionalArguments(info) ;
@@ -25,21 +71,13 @@ function showCurrentText(initial = false) {
   display.style.transform = `translate(${safe.x}vw, ${safe.y}vh) translate(-50%, -50%)`;
   display.style.position = "absolute";
   display.style.maxWidth = `${safe.width}vw`;
-  if (initial) {
-    // re-enable transitions AFTER first paint
-    requestAnimationFrame(() => {
-      display.style.transition = initialAnimation;
-    });
-  }
-  
-  progress++;
 }
 
 document.body.addEventListener("click", () => {
   showCurrentText();
 
   // loop back to start
-  if (progress >= textInfos.length) {
+  if (progress >= pageInfos.length) {
     progress = 0;
   }
 });
@@ -65,7 +103,6 @@ function scrambleText(element: HTMLElement, newText: string, duration = 300) {
   const interval = setInterval(() => {
     let output = "";
     let curLen = oldText.length + (newText.length - oldText.length) * (frame / totalFrames);
-    console.log(curLen);
     for (let i = 0; i < curLen; i++) {
       const progress = Math.pow(frame / totalFrames, 0.5);
 
@@ -85,4 +122,11 @@ function scrambleText(element: HTMLElement, newText: string, duration = 300) {
       element.textContent = newText;
     }
   }, intervalTime);
+}
+
+function scrambleOut(element: HTMLElement, duration = 300) {
+  scrambleText(element, "", duration);
+  setTimeout(() => {
+    element.remove();
+  }, duration);
 }

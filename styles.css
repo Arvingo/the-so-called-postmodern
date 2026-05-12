@@ -11,7 +11,7 @@ body {
   color: canvastext;
 }
 
-div#mainDisplay {
+div.textBlock {
   left: 0;
   top: 0;
   background: canvas;
@@ -19,6 +19,9 @@ div#mainDisplay {
   position: absolute;
   max-width: 60vw;
   white-space: normal;
+  
+}
+.easing {
   transition:
     transform 0.7s ease,
     color 0.7s ease,
