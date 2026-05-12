@@ -12,12 +12,20 @@ body {
   color: canvastext;
 }
 
-.app {
+div#mainDisplay {
+  margin: 0;
+  min-height: 100vh;
+  place-items: center;
+  background: canvas;
+  color: canvastext;
+}
+
+/* .app {
   text-align: center;
   padding: 2rem;
   border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
   border-radius: 12px;
-}
+} */
 
 button {
   border: 0;
