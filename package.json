@@ -12,6 +12,7 @@
   },
   "keywords": [],
   "author": "",
+  "build": "tsc",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
