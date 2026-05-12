@@ -1,28 +1,41 @@
 import { defaultTextInfo, textInfos } from "./data/data.js";
 import type { TextInfo } from "./TextInfo.js";
+
 let progress = 0;
+let initialAnimation: string;
 
 const display = document.getElementById("mainDisplay") as HTMLDivElement;
 
-function showCurrentText() {
-  const info = textInfos[progress] || defaultTextInfo;
+showCurrentText(true);
 
-  scrambleText(display, info.text);
+function showCurrentText(initial = false) {
+  const info = textInfos[progress] || defaultTextInfo;
+  if (initial) {
+    initialAnimation = display.style.transition;
+    display.style.transition = "none";
+    display.textContent = info.text;
+  } else {
+    scrambleText(display, info.text);
+  }
   display.style.color = info.color;
   display.style.fontSize = info.size;
   const safe = populateOptionalArguments(info) ;
   
   //first move it to position, then center text about itself
   display.style.transform = `translate(${safe.x}vw, ${safe.y}vh) translate(-50%, -50%)`;
-
-
   display.style.position = "absolute";
+  if (initial) {
+    // re-enable transitions AFTER first paint
+    requestAnimationFrame(() => {
+      display.style.transition = initialAnimation;
+    });
+  }
+  
+  progress++;
 }
 
 document.body.addEventListener("click", () => {
   showCurrentText();
-
-  progress++;
 
   // loop back to start
   if (progress >= textInfos.length) {
@@ -43,7 +56,6 @@ function scrambleText(element: HTMLElement, newText: string, duration = 300) {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*-_=+[]{}|;:,.<>?";
   const intervalTime = 30;
   const oldText = element.textContent || "";
-  const maxLen = Math.max(oldText.length, newText.length);
   const totalFrames = Math.floor(duration / intervalTime);
   let frame = 0;
   
