@@ -4,4 +4,5 @@ export type TextInfo = {
   size: string;
   x?: number;
   y?: number;
+  width?: number;
 };

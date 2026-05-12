@@ -17,6 +17,8 @@ div#mainDisplay {
   background: canvas;
   color: canvastext;
   position: absolute;
+  max-width: 60vw;
+  white-space: normal;
   transition:
     transform 0.7s ease,
     color 0.7s ease,

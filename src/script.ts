@@ -24,6 +24,7 @@ function showCurrentText(initial = false) {
   //first move it to position, then center text about itself
   display.style.transform = `translate(${safe.x}vw, ${safe.y}vh) translate(-50%, -50%)`;
   display.style.position = "absolute";
+  display.style.maxWidth = `${safe.width}vw`;
   if (initial) {
     // re-enable transitions AFTER first paint
     requestAnimationFrame(() => {
@@ -49,6 +50,7 @@ function populateOptionalArguments(info: TextInfo) {
     ...info,
     x: info.x ?? 50,
     y: info.y ?? 50,
+    width: info.width ?? 60,
   };
 }
 

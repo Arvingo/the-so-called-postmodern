@@ -8,6 +8,7 @@ export const textInfos: TextInfo[] = [
     size: "20px",
     x: 50,
     y: 50,
+    width: 60,
   },
   {
     text: "Second message",
@@ -15,6 +16,7 @@ export const textInfos: TextInfo[] = [
     size: "28px",
     x: 30,
     y: 50,
+    width: 40,
   },
   {
     text: "Third message",
@@ -22,6 +24,7 @@ export const textInfos: TextInfo[] = [
     size: "36px",
     x: 50,
     y: 30,
+    width: 50,
   },
 ];
 export const defaultTextInfo: TextInfo = {
