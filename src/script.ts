@@ -13,8 +13,10 @@ function showCurrentText() {
   display.textContent = info.text;
   display.style.color = info.color;
   display.style.fontSize = info.size;
+  display.style.left = info.x ? info.x : "50%";
+  display.style.top = info.y ? info.y : "50%";
 
-  display.style.display = "block";
+  display.style.display = "absolute";
 }
 
 document.body.addEventListener("click", () => {

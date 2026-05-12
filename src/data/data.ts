@@ -1,19 +1,26 @@
 import type { TextInfo } from "../TextInfo.js";
-
+//y is from the top
+//x is from the left
 export const textInfos: TextInfo[] = [
   {
     text: "Hello",
     color: "red",
     size: "20px",
+    x: "50%",
+    y: "50%",
   },
   {
     text: "Second message",
     color: "blue",
     size: "28px",
+    x: "30%",
+    y: "50%",
   },
   {
     text: "Third message",
     color: "green",
     size: "36px",
+    x: "50%",
+    y: "30%",
   },
 ];
