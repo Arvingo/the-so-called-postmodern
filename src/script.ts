@@ -1,3 +1,4 @@
+import { createAnimatedPunctuation } from "./animatedPunctuation.js";
 import { pageInfos } from "./data/PageInfoBank.js";
 import type { PageInfo } from "./PageInfo.js";
 import type { TextInfo } from "./TextInfo.js";
@@ -9,6 +10,7 @@ const app = document.getElementById("app") as HTMLElement;
 const elements = new Map<string, HTMLDivElement>();
 
 showCurrentText(true);
+createAnimatedPunctuation();
 
 function showCurrentText(initial = false) {
   flushOldText(pageInfos[progress]);
