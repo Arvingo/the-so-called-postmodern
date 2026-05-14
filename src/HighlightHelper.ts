@@ -16,6 +16,14 @@ function splitByHighlights(text: string, highlights?: { start: number; end: numb
   return segments;
 }
 export function highlightText(info: TextInfo, container: HTMLElement) {
+  const key = info.text + "|" + JSON.stringify(info.highlightRanges ?? []);
+  // if the same highlighted content is already rendered, skip rebuilding/animating
+  if (container.dataset.highlightKey === key) {
+    // still update style/position if needed by caller, but don't restart animation
+    return;
+  }
+  // store key so subsequent clicks/renders don't restart animation
+  container.dataset.highlightKey = key;
   const text = info.text || "";
   const highlights = info.highlightRanges as { start: number; end: number }[] | undefined;
   const segments = splitByHighlights(text, highlights);

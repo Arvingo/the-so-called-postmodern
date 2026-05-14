@@ -13,5 +13,9 @@ export const pageInfos: PageInfo[] = [
   {
     textBlocks: [TextInfoBank.info3, TextInfoBank.info3_2,TextInfoBank.info3_3],
     bgColor: "rgba(106, 40, 40, 1)"
+  },
+  {
+    textBlocks: [TextInfoBank.info3_2],
+    bgColor: "rgba(106, 40, 40, 1)"
   }
 ]

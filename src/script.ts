@@ -41,6 +41,7 @@ function flushOldText(curPageInfo: PageInfo) {
   for (const [id, el] of elements) {
     if (!nextIds.has(id)) {
       scrambleOut(el);
+      if (el.dataset) el.dataset.highlightKey = "";
       elements.delete(id);
     }
   }
@@ -62,16 +63,19 @@ function renderText(info: TextInfo) {
   display.classList.add("easing");
   if (info.highlightRanges) {
     highlightText(info, display);
-  }
-  else if (info.transitionIn) {
-    if (info.transitionIn === "scramble") {
-      scrambleText(display, info.text);
-    } else if (info.transitionIn === "none") {
-      display.textContent = info.text;
-    }
   } else {
-    scrambleText(display, info.text);
+    display.dataset.highlightKey = "";
+    if (info.transitionIn) {
+      if (info.transitionIn === "scramble") {
+        scrambleText(display, info.text);
+      } else if (info.transitionIn === "none") {
+        display.textContent = info.text;
+      }
+    } else {
+      scrambleText(display, info.text);
+    }
   }
+  
   
   changeTextProperties(info);
 }
