@@ -1,7 +1,8 @@
 import { createAnimatedPunctuation } from "./animatedPunctuation.js";
 import { pageInfos } from "./data/PageInfoBank.js";
-import type { PageInfo } from "./PageInfo.js";
-import type { TextInfo } from "./TextInfo.js";
+import { highlightText } from "./HighlightHelper.js";
+import type { PageInfo } from "./templateTypes/PageInfo.js";
+import type { TextInfo } from "./templateTypes/TextInfo.js";
 
 let progress = 0;
 
@@ -59,7 +60,19 @@ function createTextElement(info: TextInfo) {
 function renderText(info: TextInfo) {
   const display = elements.get(info.id) || createTextElement(info);
   display.classList.add("easing");
-  scrambleText(display, info.text);
+  if (info.highlightRanges) {
+    highlightText(info, display);
+  }
+  else if (info.transitionIn) {
+    if (info.transitionIn === "scramble") {
+      scrambleText(display, info.text);
+    } else if (info.transitionIn === "none") {
+      display.textContent = info.text;
+    }
+  } else {
+    scrambleText(display, info.text);
+  }
+  
   changeTextProperties(info);
 }
 
@@ -116,6 +129,7 @@ function scrambleText(element: HTMLElement, newText: string, duration = 300) {
       if (i < curLen && progress > Math.random() && newText[i]) {
         output += newText[i];
       } else {
+        if (newText[i] != " ")
         output += chars[Math.floor(Math.random() * chars.length)];
       }
     }

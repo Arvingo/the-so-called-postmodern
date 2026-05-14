@@ -1,4 +1,4 @@
-import type { PageInfo } from "../PageInfo";
+import type { PageInfo } from "../templateTypes/PageInfo";
 import * as TextInfoBank from "./TextInfoBank";
 
 export const pageInfos: PageInfo[] = [
@@ -11,7 +11,7 @@ export const pageInfos: PageInfo[] = [
     bgColor: "#f0f0f0"
   },
   {
-    textBlocks: [TextInfoBank.info3, TextInfoBank.info3_3],
+    textBlocks: [TextInfoBank.info3, TextInfoBank.info3_2,TextInfoBank.info3_3],
     bgColor: "rgba(106, 40, 40, 1)"
   }
 ]

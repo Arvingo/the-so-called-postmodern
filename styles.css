@@ -21,14 +21,44 @@ div.textBlock {
   white-space: normal;
 }
 
-.textBlock.highlight {
-  background: rgba(255, 240, 100, 0.14);
-  box-shadow: inset 0 0 30px rgba(255,240,100,0.06);
-  transition: background-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
-  transform: translateZ(0) scale(1.02);
-  border-radius: 6px;
-  padding: 0.05em 0.25em;
+.textBlock .highlight {
+  position: relative;
+  background-repeat: no-repeat;
+  display: inline;
+  overflow: visible;
+
 }
+
+/* background element placed behind the text */
+.textBlock .highlight .highlight-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 239, 100, 0.449);
+  border-radius: inherit;
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0;
+  transition:
+    transform 1400ms cubic-bezier(.18,.62,.58,1.01) var(--hl-delay, 0ms),
+    opacity 700ms ease var(--hl-delay, 0ms);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* the inner wrapper that contains the actual text so it stays above the bg */
+.textBlock .highlight .highlight-inner {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.textBlock .highlight.show-bg .highlight-bg {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
 
 .easing {
   transition:

@@ -1,4 +1,4 @@
-import type { TextInfo } from "../TextInfo.js";
+import type { TextInfo } from "../templateTypes/TextInfo.js";
 export const defaultTextInfo: TextInfo = {
   id: "1",
   text: "Default message",
@@ -23,7 +23,7 @@ export const info1_2: TextInfo = {
     size: "40px",
     x: 20,
     y: 80,
-    width: 60,
+    width: 30,
   };
 export const info2: TextInfo = {
     id: "1",
@@ -36,12 +36,12 @@ export const info2: TextInfo = {
   };
   export const info2_2: TextInfo = {
     id: "2",
-    text: "This is a very cool looking text",
+    text: "HelloHelloHello HelloHelloHello HelloHelloHello HelloHelloHello HelloHello",
     color: "purple",
     size: "30px",
-    x: 50,
-    y: 90,
-    width: 40,
+    x: 80,
+    y: 50,
+    width: 30,
   };
 export const info3: TextInfo = {
     id: "1",
@@ -52,12 +52,22 @@ export const info3: TextInfo = {
     y: 30,
     width: 50,
   };
+export const info3_2: TextInfo = {
+    id: "2",
+    text: "HelloHelloHello HelloHelloHello HelloHelloHello HelloHelloHello HelloHello",
+    color: "purple",
+    size: "30px",
+    x: 80,
+    y: 50,
+    width: 30,
+    highlightRanges: [{ start: 0, end: 50 }],
+  };
 export const info3_3: TextInfo = {
     id: "3",
     text: "POP",
     color: "goldenrod",
     size: "80px",
-    x: 90,
+    x: 10,
     y: 60,
     width: 50,
   };
