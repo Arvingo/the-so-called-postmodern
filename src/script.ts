@@ -14,37 +14,55 @@ showCurrentText(true);
 createAnimatedPunctuation();
 
 function showCurrentText(initial = false) {
-  flushOldText(pageInfos[progress]);
+  flushOldText(pageInfos[progress], pageInfos[progress - 1] || { textBlocks: [] });
   const curPageInfo = pageInfos[progress];
   for (const info of curPageInfo.textBlocks) {
-    const el = createTextElement(info);
+    createTextElement(info);
     if (initial) {
-      bootRenderText(info, el);
+      bootRenderText(info);
     } else {
       renderText(info);
     }
   }
   if (curPageInfo.bgColor) {
-    changeBackgroundColor(curPageInfo.bgColor);
+    changeBackgroundColor(curPageInfo.bgColor, curPageInfo);
   }
   progress++;
 }
 
-function changeBackgroundColor(color: string) {
+function changeBackgroundColor(color: string, pageInfo: PageInfo) {
+  if (pageInfo.bgSnapIn) {
+    document.body.style.transition = "";
+  } else {
+    document.body.style.transition = "background-color 700ms ease";
+  }
   document.body.style.backgroundColor = color;
 }
 
-function flushOldText(curPageInfo: PageInfo) {
+
+function flushOldText(curPageInfo: PageInfo, prevPageInfo: PageInfo) {
   const textBlocks = curPageInfo.textBlocks;
+  const prevTextBlocks = prevPageInfo.textBlocks;
   const nextIds = new Set(textBlocks.map(b => b.id));
 
   for (const [id, el] of elements) {
     if (!nextIds.has(id)) {
-      scrambleOut(el);
+      transitionOutText(prevTextBlocks.find(b => b.id === id) as TextInfo, el);
       if (el.dataset) el.dataset.highlightKey = "";
       elements.delete(id);
     }
   }
+}
+
+function transitionOutText(info: TextInfo, el: HTMLElement) {
+  if (!info.transitionOut || info.transitionOut === "scramble") { //default to scramble
+    scrambleOut(el);
+  } else if (info.transitionOut === "none") {
+    el.remove();
+  } else if (info.transitionOut === "fade") {
+    fadeOut(el);
+  }
+  elements.delete(info.id);
 }
 
 function createTextElement(info: TextInfo) {
@@ -70,6 +88,9 @@ function renderText(info: TextInfo) {
         scrambleText(display, info.text);
       } else if (info.transitionIn === "none") {
         display.textContent = info.text;
+      } else if (info.transitionIn == "fade") {
+        fadeIn(display);
+        display.textContent = info.text;
       }
     } else {
       scrambleText(display, info.text);
@@ -80,9 +101,11 @@ function renderText(info: TextInfo) {
   changeTextProperties(info);
 }
 
-function bootRenderText(info: TextInfo, display: HTMLElement) { 
-  display.textContent = info.text;
-  changeTextProperties(info);
+function bootRenderText(info: TextInfo) { 
+  const originalTransition = info.transitionIn;
+  info.transitionIn = "none";
+  renderText(info);
+  info.transitionIn = originalTransition;
 }
 
 function changeTextProperties(info: TextInfo) {
@@ -154,4 +177,19 @@ function scrambleOut(element: HTMLElement, duration = 300) {
   setTimeout(() => {
     element.remove();
   }, duration);
+}
+function fadeOut(element: HTMLElement, duration = 700) {
+  element.style.transition = `opacity ${duration}ms ease`;
+  element.style.opacity = "0";
+  setTimeout(() => {
+    element.remove();
+  }, duration);
+}
+
+function fadeIn(element: HTMLElement, duration = 700) {
+  element.style.opacity = "0";
+  element.style.transition = `opacity ${duration - 50}ms ease`;
+  setTimeout(() => {
+    element.style.opacity = "1";
+  }, 50);
 }

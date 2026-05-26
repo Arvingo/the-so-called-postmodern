@@ -4,7 +4,8 @@ import * as TextInfoBank from "./TextInfoBank";
 export const pageInfos: PageInfo[] = [
   {
     textBlocks: [TextInfoBank.info1, TextInfoBank.info1_2],
-    bgColor: "#ffffff"
+    bgColor: "#ffffff",
+    bgSnapIn: true
   },
   {
     textBlocks: [TextInfoBank.info2, TextInfoBank.info2_2],

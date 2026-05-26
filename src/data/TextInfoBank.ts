@@ -51,6 +51,7 @@ export const info3: TextInfo = {
     x: 50,
     y: 30,
     width: 50,
+    transitionOut: "fade",
   };
 export const info3_2: TextInfo = {
     id: "2",
@@ -70,4 +71,5 @@ export const info3_3: TextInfo = {
     x: 10,
     y: 60,
     width: 50,
+    transitionIn: "fade",
   };
