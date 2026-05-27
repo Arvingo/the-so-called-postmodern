@@ -14,7 +14,14 @@ showCurrentText(true);
 createAnimatedPunctuation();
 
 function showCurrentText(initial = false) {
-  flushOldText(pageInfos[progress], pageInfos[progress - 1] || { textBlocks: [] });
+  let prevInfo;
+  if (initial) {
+    prevInfo = { textBlocks: [] };
+  } else {
+    prevInfo = pageInfos[progress - 1] || pageInfos[pageInfos.length - 1];
+  }
+  
+  flushOldText(pageInfos[progress], prevInfo);
   const curPageInfo = pageInfos[progress];
   for (const info of curPageInfo.textBlocks) {
     createTextElement(info);
@@ -48,6 +55,7 @@ function flushOldText(curPageInfo: PageInfo, prevPageInfo: PageInfo) {
   for (const [id, el] of elements) {
     if (!nextIds.has(id)) {
       transitionOutText(prevTextBlocks.find(b => b.id === id) as TextInfo, el);
+      console.log("removing", id);
       if (el.dataset) el.dataset.highlightKey = "";
       elements.delete(id);
     }
@@ -55,6 +63,7 @@ function flushOldText(curPageInfo: PageInfo, prevPageInfo: PageInfo) {
 }
 
 function transitionOutText(info: TextInfo, el: HTMLElement) {
+  if (!info) return;
   if (!info.transitionOut || info.transitionOut === "scramble") { //default to scramble
     scrambleOut(el);
   } else if (info.transitionOut === "none") {
@@ -118,6 +127,7 @@ function changeTextProperties(info: TextInfo) {
   display.style.transform = `translate(${safe.x}vw, ${safe.y}vh) translate(-50%, -50%)`;
   display.style.position = "absolute";
   display.style.maxWidth = `${safe.width}vw`;
+  if (info.font) display.style.fontFamily = info.font;
 }
 
 document.body.addEventListener("click", () => {

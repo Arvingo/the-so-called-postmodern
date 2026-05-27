@@ -3,20 +3,44 @@ import * as TextInfoBank from "./TextInfoBank";
 
 export const pageInfos: PageInfo[] = [
   {
-    textBlocks: [TextInfoBank.info1, TextInfoBank.info1_2],
+    textBlocks: [TextInfoBank.c0_title1, TextInfoBank.c0_title2, TextInfoBank.c0_title3, TextInfoBank.c0_title4],
     bgColor: "#ffffff",
-    bgSnapIn: true
+    bgSnapIn: false
   },
   {
-    textBlocks: [TextInfoBank.info2, TextInfoBank.info2_2],
-    bgColor: "#f0f0f0"
+    textBlocks: [TextInfoBank.c0_1_1, TextInfoBank.c0_1_2],
+    bgColor: "#f0f0f0",
+    bgSnapIn: false
   },
   {
-    textBlocks: [TextInfoBank.info3, TextInfoBank.info3_2,TextInfoBank.info3_3],
-    bgColor: "rgba(106, 40, 40, 1)"
+    textBlocks: [TextInfoBank.c0_2_1],
+    bgColor: "#f0f0f0",
+    bgSnapIn: false
   },
   {
-    textBlocks: [TextInfoBank.info3_2],
-    bgColor: "rgba(106, 40, 40, 1)"
+    textBlocks: [TextInfoBank.c0_2_1r, TextInfoBank.c0_2_2],
+    bgColor: "#f0f0f0",
+    bgSnapIn: false
+  },
+  {
+    textBlocks: [TextInfoBank.c0_2_1r, TextInfoBank.c0_2_2, TextInfoBank.c0_2_3],
+    bgColor: "#f0f0f0",
+    bgSnapIn: false
+  },
+  {
+    textBlocks: [TextInfoBank.c0_2_1r, TextInfoBank.c0_2_2, TextInfoBank.c0_2_3, TextInfoBank.c0_2_4],
+    bgColor: "#f0f0f0",
+    bgSnapIn: false
+  },
+  {
+    textBlocks: [TextInfoBank.c0_2_1r, TextInfoBank.c0_2_2, TextInfoBank.c0_2_3, TextInfoBank.c0_2_4, TextInfoBank.c0_2_5],
+    bgColor: "#f0f0f0",
+    bgSnapIn: false
+  },
+  {
+    textBlocks: [TextInfoBank.c0_2_1r, TextInfoBank.c0_2_2, TextInfoBank.c0_2_3, TextInfoBank.c0_2_4, TextInfoBank.c0_2_5, TextInfoBank.c0_2_6],
+    bgColor: "#f0f0f0",
+    bgSnapIn: false
   }
+
 ]
