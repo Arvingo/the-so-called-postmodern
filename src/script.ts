@@ -4,7 +4,7 @@ import { highlightText } from "./HighlightHelper.js";
 import type { PageInfo } from "./templateTypes/PageInfo.js";
 import type { TextInfo } from "./templateTypes/TextInfo.js";
 
-let progress = 0;
+let progress = 32;
 
 const app = document.getElementById("app") as HTMLElement;
 
@@ -121,13 +121,15 @@ function changeTextProperties(info: TextInfo) {
   const display = elements.get(info.id) || createTextElement(info);
   display.style.color = info.color;
   display.style.fontSize = info.size;
+  
   const safe = populateOptionalArguments(info) ;
   
   //first move it to position, then center text about itself
   display.style.transform = `translate(${safe.x}vw, ${safe.y}vh) translate(-50%, -50%)`;
   display.style.position = "absolute";
   display.style.maxWidth = `${safe.width}vw`;
-  if (info.font) display.style.fontFamily = info.font;
+  display.style.fontFamily = safe.font;
+  display.style.fontWeight = safe.fontWeight;
 }
 
 document.body.addEventListener("click", () => {
@@ -146,6 +148,8 @@ function populateOptionalArguments(info: TextInfo) {
     x: info.x ?? 50,
     y: info.y ?? 50,
     width: info.width ?? 60,
+    fontWeight: info.fontWeight ?? "normal",   
+    font: info.font ?? "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
   };
 }
 
@@ -197,8 +201,8 @@ function fadeOut(element: HTMLElement, duration = 700) {
 }
 
 function fadeIn(element: HTMLElement, duration = 700) {
+
   element.style.opacity = "0";
-  element.style.transition = `opacity ${duration - 50}ms ease`;
   setTimeout(() => {
     element.style.opacity = "1";
   }, 50);

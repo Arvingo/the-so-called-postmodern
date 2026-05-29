@@ -7,6 +7,7 @@ export type TextInfo = {
   y?: number;
   width?: number;
   font?: string;
+  fontWeight?: string;
   transitionIn?: string;
   transitionOut?: string;
   highlightRanges?: { start: number; end: number }[];
