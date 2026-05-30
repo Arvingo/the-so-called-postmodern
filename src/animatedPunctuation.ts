@@ -14,11 +14,9 @@ export function createAnimatedPunctuation() {
     el.className = "punct";
     el.textContent = PUNCTS[Math.floor(Math.random() * PUNCTS.length)];
 
-    // size in vw for responsive large characters
     const size = rand(40, 50); // vw
     el.style.fontSize = size + "vw";
 
-    // horizontal starting position (0..100%)
     const left = pickLeft();
     el.style.left = left + "%";
     el.style.top = STARTING_VERITCAL_OFFSET_VH + "vh"; // start above viewport
@@ -33,14 +31,10 @@ export function createAnimatedPunctuation() {
     el.style.setProperty("color", `rgba(0,0,0,${startOpacity})`);
 
 
-    // animation duration & delay
     setUpAnimation(el);
 
-    // subtle horizontal drift using transform translateX animated via CSS (optional)
     const drift = rand(-8, 8);
     if (Math.abs(drift) > 0.5) {
-      // apply a small oscillation using CSS transition on transform (keeps GPU)
-      // instead of creating many keyframes, use CSS variables and a universal keyframe:
       el.style.transformOrigin = "center";
     }
 
@@ -61,18 +55,17 @@ function setUpAnimation(el: HTMLElement) {
 }
 
 const usedPositions: number[] = [];
-const MIN_GAP_PCT = 10; // minimum gap in percent between glyph centers
+const MIN_GAP_PCT = 10; 
 
 function pickLeft() {
   for (let i = 0; i < 20; i++) {
-    const left = rand(-10, 110); // allow off-screen starts
+    const left = rand(-10, 110); 
     if (usedPositions.every(p => Math.abs(p - left) >= MIN_GAP_PCT)) {
       usedPositions.push(left);
       if (usedPositions.length > 2) usedPositions.shift();
       return left;
     }
   }
-  // fallback if no sufficiently far position found
   return rand(-10, 110);
 }
 
@@ -101,15 +94,12 @@ function pickLeft() {
   populateBoot();
 
 
-  // repopulate on resize to adjust sizes / count
   let t: number | undefined;
   window.addEventListener("resize", () => {
     clearTimeout(t);
     t = setTimeout(() => populate(Math.max(8, Math.round((vw() * 0.02)))), 200);
   });
 
-  // optional: continuously add new punctuation (recycling)
-  // uncomment to spawn new elements and remove finished ones for infinite flow
   setInterval(() => {
     const n = createPunct();
     container.appendChild(n);

@@ -25,16 +25,21 @@ div.textBlock {
 .textBlock .highlight {
   position: relative;
   background-repeat: no-repeat;
+  z-index: auto;
   display: inline;
   overflow: visible;
+  background: local;
+  
 
+}
+.bold {
+  font-weight: 700;
 }
 
 /* background element placed behind the text */
 .textBlock .highlight .line-bg {
   position: absolute;
   inset: 0;
-  background: rgba(255, 239, 100, 0.449);
   border-radius: inherit;
   transform-origin: left center;
   transform: scaleX(0);
@@ -51,8 +56,9 @@ div.textBlock {
 /* the inner wrapper that contains the actual text so it stays above the bg */
 .textBlock .highlight .highlight-inner {
   position: relative;
-  z-index: 1;
-  display: inline-block;
+  z-index: 2;
+  background-color: transparent;
+  transition: background-color 1.5s ease;
 }
 
 .textBlock .line-bg {
@@ -67,6 +73,10 @@ div.textBlock {
     color 0.7s ease,
     font-size 0.7s ease,
     opacity 0.7s ease;
+}
+.linearCredits {
+  transition:
+    transform 4s linear,
 }
 
 /* .app {
@@ -121,6 +131,20 @@ button {
     transform: translateY(var(--distance, 100px)) translateX(-50%);
     opacity: var(--start-opacity, 0.12);
   }
+}
+
+/* linear scrolling credits — animate transform from off-bottom → off-top */
+@keyframes linearCreditsMove {
+  from { transform: translate(-50%, -50%) translateY(100vh); }
+  to   { transform: translate(-50%, -50%) translateY(-200vh); }
+}
+
+.linearCredits {
+  animation-name: linearCreditsMove;
+  animation-duration: var(--credits-duration, 8000ms);
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  will-change: transform;
 }
 
 /* prefer reduced motion: avoid the falling animation and use subtle static blur */

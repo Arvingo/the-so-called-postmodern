@@ -1,10 +1,10 @@
 import { createAnimatedPunctuation } from "./animatedPunctuation.js";
 import { pageInfos } from "./data/PageInfoBank.js";
-import { highlightText } from "./HighlightHelper.js";
+import { boldText, highlightText } from "./HighlightHelper.js";
 import type { PageInfo } from "./templateTypes/PageInfo.js";
 import type { TextInfo } from "./templateTypes/TextInfo.js";
 
-let progress = 32;
+let progress = 60; //32 is beloved
 
 const app = document.getElementById("app") as HTMLElement;
 
@@ -53,11 +53,21 @@ function flushOldText(curPageInfo: PageInfo, prevPageInfo: PageInfo) {
   const nextIds = new Set(textBlocks.map(b => b.id));
 
   for (const [id, el] of elements) {
+    const anims = (el as any).getAnimations ? (el as any).getAnimations() : [];
     if (!nextIds.has(id)) {
       transitionOutText(prevTextBlocks.find(b => b.id === id) as TextInfo, el);
-      console.log("removing", id);
+      anims.forEach((a: Animation) => {
+        try { a.cancel(); } catch { /* ignore */ }
+      });
       if (el.dataset) el.dataset.highlightKey = "";
       elements.delete(id);
+    } else {
+      //remove the spans and only leave the text
+      const text = el.textContent || "";
+      el.innerHTML = "";
+      const span = document.createElement("span");
+      span.textContent = text;
+      el.appendChild(span);
     }
   }
 }
@@ -88,26 +98,46 @@ function createTextElement(info: TextInfo) {
 function renderText(info: TextInfo) {
   const display = elements.get(info.id) || createTextElement(info);
   display.classList.add("easing");
+  if (info.boldRanges) boldText(info, display);
   if (info.highlightRanges) {
     highlightText(info, display);
+    if (info.transitionIn == "fade") {
+        fadeIn(display);
+    }
   } else {
     display.dataset.highlightKey = "";
     if (info.transitionIn) {
       if (info.transitionIn === "scramble") {
-        scrambleText(display, info.text);
+        if (info.boldRanges) {
+          difficultScrambleText(display, info.text, info.width ? 300 : 0);
+        } else {
+          scrambleText(display, info.text, info.width ? 300 : 0);
+        }
+        
       } else if (info.transitionIn === "none") {
         display.textContent = info.text;
       } else if (info.transitionIn == "fade") {
         fadeIn(display);
         display.textContent = info.text;
+      } else if (info.transitionIn == "scroll") {
+        // put the text into the element before measuring/scrolling
+        changeTextProperties(info, false);
+        display.classList.remove("easing");
+        linearScroll(display);
+        display.textContent = info.text;
       }
     } else {
-      scrambleText(display, info.text);
+      if (info.boldRanges) {
+          difficultScrambleText(display, info.text, info.width ? 300 : 0);
+        } else {
+          scrambleText(display, info.text, info.width ? 300 : 0);
+        }
     }
   }
   
   
-  changeTextProperties(info);
+  
+  changeTextProperties(info, info.transitionIn != "scroll");
 }
 
 function bootRenderText(info: TextInfo) { 
@@ -117,7 +147,7 @@ function bootRenderText(info: TextInfo) {
   info.transitionIn = originalTransition;
 }
 
-function changeTextProperties(info: TextInfo) {
+function changeTextProperties(info: TextInfo, allowTransition = true) {
   const display = elements.get(info.id) || createTextElement(info);
   display.style.color = info.color;
   display.style.fontSize = info.size;
@@ -125,21 +155,16 @@ function changeTextProperties(info: TextInfo) {
   const safe = populateOptionalArguments(info) ;
   
   //first move it to position, then center text about itself
-  display.style.transform = `translate(${safe.x}vw, ${safe.y}vh) translate(-50%, -50%)`;
-  display.style.position = "absolute";
+  if (allowTransition) {
+    display.style.transform = `translate(${safe.x}vw, ${safe.y}vh) translate(-50%, -50%)`;
+    display.style.position = "absolute";
+  } else {
+    display.style.width = `${safe.width}vw`;
+  }
   display.style.maxWidth = `${safe.width}vw`;
   display.style.fontFamily = safe.font;
   display.style.fontWeight = safe.fontWeight;
 }
-
-document.body.addEventListener("click", () => {
-  showCurrentText();
-
-  // loop back to start
-  if (progress >= pageInfos.length) {
-    progress = 0;
-  }
-});
 
 
 function populateOptionalArguments(info: TextInfo) {
@@ -153,6 +178,121 @@ function populateOptionalArguments(info: TextInfo) {
   };
 }
 
+function collectTextNodes(root: ParentNode): Text[] {
+  const out: Text[] = [];
+  const walker = document.createTreeWalker(root as Node, NodeFilter.SHOW_TEXT, {
+    acceptNode() { return NodeFilter.FILTER_ACCEPT; }
+  });
+  let n = walker.nextNode();
+  while (n) {
+    out.push(n as Text);
+    n = walker.nextNode();
+  }
+  return out;
+}
+
+function difficultScrambleText(element: HTMLElement, newText: string, width: number, duration = 300) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*-_=+[]{}|;:,.<>?";
+  const intervalTime = 30;
+  element.style.maxWidth = width + "vw";
+
+  // collect text nodes inside element (preserves spans/markup)
+  const textNodes = collectTextNodes(element);
+  if (!textNodes.length) {
+    // no internal text nodes — fall back to simple behaviour
+    const oldText = element.textContent || "";
+    let frame = 0;
+    const totalFrames = Math.max(1, Math.floor(duration / intervalTime));
+    const interval = setInterval(() => {
+      let output = "";
+      const curLen = Math.floor(oldText.length + (newText.length - oldText.length) * (frame / totalFrames));
+      for (let i = 0; i < curLen; i++) {
+        const progress = Math.pow(frame / totalFrames, 0.5);
+        if (oldText[i] === " " && Math.random() < 0.5) {
+          output += " ";
+          continue;
+        }
+        if (i < curLen && progress > Math.random() && newText[i]) {
+          output += newText[i];
+        } else {
+          output += (newText[i] === " ") ? " " : chars[Math.floor(Math.random() * chars.length)];
+        }
+      }
+      element.textContent = output;
+      frame++;
+      if (frame >= totalFrames) {
+        clearInterval(interval);
+        element.textContent = newText;
+      }
+    }, intervalTime);
+    return;
+  }
+
+  
+
+  // prepare combined strings and lengths
+  const oldCombined = textNodes.map(n => n.data).join("");
+  const newCombined = newText;
+  const nodeLengths = textNodes.map(n => n.data.length);
+
+  // build slices bounds for nodes (use existing node lengths; last node absorbs remainder)
+  const slices: { start: number; length: number }[] = [];
+  let pos = 0;
+  for (let i = 0; i < nodeLengths.length; i++) {
+    let len = nodeLengths[i];
+    // for last node, allow remainder so we don't drop chars
+    if (i === nodeLengths.length - 1) {
+      len = Math.max(0, newCombined.length - pos);
+    } else {
+      // clamp len to avoid overflow if newCombined shorter
+      len = Math.max(0, Math.min(len, Math.max(0, newCombined.length - pos)));
+    }
+    slices.push({ start: pos, length: len });
+    pos += len;
+    if (pos >= newCombined.length) {
+      // remaining nodes get zero length
+      for (let j = i + 1; j < nodeLengths.length; j++) slices.push({ start: pos, length: 0 });
+      break;
+    }
+  }
+
+  // prepare oldAdjusted (pad/trim to match newCombined length)
+  let oldAdjusted = oldCombined;
+  if (oldAdjusted.length < newCombined.length) oldAdjusted = oldAdjusted.padEnd(newCombined.length, " ");
+  else if (oldAdjusted.length > newCombined.length) oldAdjusted = oldAdjusted.slice(0, newCombined.length);
+
+  const totalFrames = Math.max(1, Math.floor(duration / intervalTime));
+  let frame = 0;
+  const interval = setInterval(() => {
+    let output = "";
+    const curLen = Math.floor(oldAdjusted.length + (newCombined.length - oldAdjusted.length) * (frame / totalFrames));
+    for (let i = 0; i < newCombined.length; i++) {
+      const progress = Math.pow(frame / totalFrames, 0.5);
+      if (i < curLen && progress > Math.random()) {
+        output += newCombined[i];
+      } else {
+        output += chars[Math.floor(Math.random() * chars.length)];
+      }
+    }
+
+    // distribute output into text nodes according to slices
+    for (let i = 0; i < textNodes.length; i++) {
+      const s = slices[i] || { start: 0, length: 0 };
+      const slice = output.slice(s.start, s.start + s.length);
+      textNodes[i].data = slice;
+    }
+
+    frame++;
+    if (frame >= totalFrames) {
+      clearInterval(interval);
+      // finalize exact final text into nodes
+      for (let i = 0; i < textNodes.length; i++) {
+        const s = slices[i] || { start: 0, length: 0 };
+        textNodes[i].data = newCombined.slice(s.start, s.start + s.length);
+      }
+    }
+  }, intervalTime);
+}
 function scrambleText(element: HTMLElement, newText: string, duration = 300) {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*-_=+[]{}|;:,.<>?";
   const intervalTime = 30;
@@ -170,8 +310,12 @@ function scrambleText(element: HTMLElement, newText: string, duration = 300) {
       if (i < curLen && progress > Math.random() && newText[i]) {
         output += newText[i];
       } else {
-        if (newText[i] != " ")
-        output += chars[Math.floor(Math.random() * chars.length)];
+        if (newText[i] != " ") {
+          output += chars[Math.floor(Math.random() * chars.length)];
+        } else {
+          output += " ";
+        }
+;
       }
     }
 
@@ -186,13 +330,42 @@ function scrambleText(element: HTMLElement, newText: string, duration = 300) {
   }, intervalTime);
 }
 
-function scrambleOut(element: HTMLElement, duration = 300) {
-  scrambleText(element, "", duration);
-  setTimeout(() => {
-    element.remove();
-  }, duration);
+function linearScroll(element: HTMLElement, speedPxPerSec = 600) {
+  // ensure element is absolutely positioned and centered horizontally
+  element.style.position = "absolute";
+  element.style.left = "50%";
+  element.style.top = "0";
+  element.style.willChange = "transform";
+
+  // measure after paint so text is present and sizes are correct
+  requestAnimationFrame(() => {
+    const viewportH = window.innerHeight;
+    const elRect = element.getBoundingClientRect();
+    const elH = elRect.height || element.offsetHeight || 0;
+
+    const margin = 20; // px padding before/after
+    const startY = Math.round(viewportH + margin);   // just below viewport
+    const endY = Math.round(-elH - margin);          // just above top
+
+    const distancePx = Math.abs(startY - endY);
+    const durationMs = Math.max(300, Math.round((distancePx / speedPxPerSec) * 1000));
+
+    // initial transform: center X and position vertically at startY
+    const from = `translateX(-50%) translateY(${startY}px)`;
+    const to   = `translateX(-50%) translateY(${endY}px)`;
+    element.style.transform = from;
+
+    // flush layout then animate linearly
+    element.getBoundingClientRect();
+    const anim = element.animate(
+      [{ transform: from }, { transform: to }],
+      { duration: durationMs, easing: "linear", fill: "forwards" }
+    );
+    anim.play();
+    anim.onfinish = () => {goToNext();};
+  });
 }
-function fadeOut(element: HTMLElement, duration = 700) {
+  function fadeOut(element: HTMLElement, duration = 700) {
   element.style.transition = `opacity ${duration}ms ease`;
   element.style.opacity = "0";
   setTimeout(() => {
@@ -203,7 +376,31 @@ function fadeOut(element: HTMLElement, duration = 700) {
 function fadeIn(element: HTMLElement, duration = 700) {
 
   element.style.opacity = "0";
+  element.setAttribute("timing", duration.toString());
   setTimeout(() => {
     element.style.opacity = "1";
   }, 50);
+}
+function scrambleOut(element: HTMLElement, duration = 300) {
+  scrambleText(element, "", duration);
+  setTimeout(() => {
+    element.remove();
+  }, duration);
+}
+document.body.addEventListener("click", () => {
+  goToNext(); 
+});
+document.body.addEventListener("keydown", (e) => {
+  if (e.key === " " || e.key === "ArrowRight") {
+    e.preventDefault();
+    goToNext();
+  }
+});
+function goToNext() {
+  showCurrentText();
+
+  // loop back to start
+  if (progress >= pageInfos.length) {
+    progress = 0;
+  }
 }

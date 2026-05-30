@@ -191,7 +191,124 @@ export const pageInfos: PageInfo[] = [
     bgColor: "#fdc5b4ff",
     bgSnapIn: false,
   },
-
+  {
+    textBlocks: [TextInfoBank.c1_3_1],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c1_3_1), TextInfoBank.c1_quote1_1, TextInfoBank.c1_cite_1],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_4_1, TextInfoBank.c1_quote1_2],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_5_1],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_6_1],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_7_1],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c1_7_1), TextInfoBank.c1_quote2_1 ,TextInfoBank.c1_cite_2],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_8_1, repeatedInfo(TextInfoBank.c1_quote2_1)],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_8_2, repeatedInfo(TextInfoBank.c1_8_1), repeatedInfo(TextInfoBank.c1_quote2_1)],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_9_1, repeatedInfo(TextInfoBank.c1_quote2_1)],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_10_1, repeatedInfo(TextInfoBank.c1_quote2_1)],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_11_1, repeatedInfo(TextInfoBank.c1_quote2_1)],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c1_11_1), TextInfoBank.c1_11_2, repeatedInfo(TextInfoBank.c1_quote2_1)],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_12_1],
+    bgColor: "#fdc5b4ff",
+    bgSnapIn: false,
+  },
+  {
+    textBlocks: [TextInfoBank.c1_segmentedQuote1, TextInfoBank.c1_13_1],
+    bgColor: "#fdc5b4ff", 
+  },
+  {
+    textBlocks: [TextInfoBank.c1_segmentedQuote2, TextInfoBank.c1_13_2, TextInfoBank.c1_13_1b],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_segmentedQuote3, TextInfoBank.c1_13_3, TextInfoBank.c1_13_2b, TextInfoBank.c1_13_1c],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_segmentedQuote4, TextInfoBank.c1_13_4, TextInfoBank.c1_13_3b, TextInfoBank.c1_13_2c],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_13_5],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_13_6],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_13_7],
+    bgColor: "#84584bff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_13_8],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_14_1],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_15_1, TextInfoBank.c1_15_2, TextInfoBank.c1_quote2_2],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_quote2_3, TextInfoBank.c1_16_1, TextInfoBank.c1_16_2],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_17_1],
+    bgColor: "#fdc5b4ff",
+  },
 
 
 

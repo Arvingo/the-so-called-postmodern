@@ -10,5 +10,6 @@ export type TextInfo = {
   fontWeight?: string;
   transitionIn?: string;
   transitionOut?: string;
-  highlightRanges?: { start: number; end: number }[];
+  highlightRanges?: { start: number; end: number; color?: string }[];
+  boldRanges?: { start: number; end: number }[];
 };
