@@ -51,10 +51,6 @@ export function highlightText(info: TextInfo, container: HTMLElement) {
  
     wrapper.appendChild(innerText);
      container.appendChild(wrapper);
-     let delay = 0;
-     if (info.transitionIn && info.transitionIn !== "none") {
-       delay = 700;
-     }
  
      //revealHighlightPerLine(wrapper, seg.color || "rgba(255,239,100,0.45)", delay);
   }

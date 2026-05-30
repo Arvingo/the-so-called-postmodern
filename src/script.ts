@@ -4,7 +4,7 @@ import { boldText, highlightText } from "./HighlightHelper.js";
 import type { PageInfo } from "./templateTypes/PageInfo.js";
 import type { TextInfo } from "./templateTypes/TextInfo.js";
 
-let progress = 60; //32 is beloved
+let progress = 0; //32 is beloved
 
 const app = document.getElementById("app") as HTMLElement;
 
@@ -148,15 +148,20 @@ function bootRenderText(info: TextInfo) {
 }
 
 function changeTextProperties(info: TextInfo, allowTransition = true) {
+  console.log(window.innerWidth);
   const display = elements.get(info.id) || createTextElement(info);
   display.style.color = info.color;
-  display.style.fontSize = info.size;
+  if (window.innerWidth / 1536 < window.innerHeight / 864) {
+   display.style.fontSize =(parseInt(info.size) / 1536 * 100 + "vw"); 
+  } else {
+    display.style.fontSize =(parseInt(info.size) / 864 * 100 + "vh");
+  }
   
   const safe = populateOptionalArguments(info) ;
   
   //first move it to position, then center text about itself
   if (allowTransition) {
-    display.style.transform = `translate(${safe.x}vw, ${safe.y}vh) translate(-50%, -50%)`;
+    display.style.transform = `translate(${safe.x}dvw, ${safe.y}dvh) translate(-50%, -50%)`;
     display.style.position = "absolute";
   } else {
     display.style.width = `${safe.width}vw`;
