@@ -309,6 +309,76 @@ export const pageInfos: PageInfo[] = [
     textBlocks: [TextInfoBank.c1_17_1],
     bgColor: "#fdc5b4ff",
   },
+  {
+    textBlocks: [TextInfoBank.c1_18_1],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_19_1],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c1_19_1), TextInfoBank.c1_19_2],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c1_19_1), repeatedInfo(TextInfoBank.c1_19_2), TextInfoBank.c1_19_3],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c1_19_1), repeatedInfo(TextInfoBank.c1_19_2), repeatedInfo(TextInfoBank.c1_19_3), TextInfoBank.c1_19_4],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_20_1, TextInfoBank.c1_20_2],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_21_1, TextInfoBank.c1_quote3_1, TextInfoBank.c1_cite_3],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_21_2, TextInfoBank.c1_quote3_2],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_22_1, TextInfoBank.c1_quote3_3],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_23_1, TextInfoBank.c1_quote3_4],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_24_1, repeatedInfo(TextInfoBank.c1_quote3_4)],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_25_1],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_26_1],
+    bgColor: "#fdc5b4ff",
+  },
+    {
+    textBlocks: [TextInfoBank.c1_26_1b,TextInfoBank.c1_26_2],
+    bgColor: "#fdc5b4ff",
+  },
+  {
+    textBlocks: [TextInfoBank.c1_27_1],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c1_27_1), TextInfoBank.c1_27_2, TextInfoBank.c1_27_3],
+    bgColor: "#8da18fff",
+  },
+  
+
+
+  
+
+
 
 
 

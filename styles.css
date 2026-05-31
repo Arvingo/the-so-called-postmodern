@@ -58,7 +58,7 @@ div.textBlock {
   position: relative;
   z-index: 2;
   background-color: transparent;
-  transition: background-color 1.5s ease;
+  transition: background-color 1.5s ease, opacity 1.5s ease;
 }
 
 .textBlock .line-bg {

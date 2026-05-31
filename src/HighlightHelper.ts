@@ -77,6 +77,7 @@ export function boldText(info: TextInfo, container: HTMLElement) {
 
   }
 }
+
 // function revealHighlightPerLine(wrap: HTMLElement, color: string = "rgba(255,239,100,0.45)", preDelay = 705, duration = 700, gap = -500) {
 //   const inner = wrap.querySelector<HTMLElement>(".highlight-inner");
 //   if (!inner || !inner.firstChild) return;

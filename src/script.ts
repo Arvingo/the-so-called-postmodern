@@ -3,8 +3,9 @@ import { pageInfos } from "./data/PageInfoBank.js";
 import { boldText, highlightText } from "./HighlightHelper.js";
 import type { PageInfo } from "./templateTypes/PageInfo.js";
 import type { TextInfo } from "./templateTypes/TextInfo.js";
-
-let progress = 0; //32 is beloved
+//32: beloved
+//77: tttc
+let progress = 0; 
 
 const app = document.getElementById("app") as HTMLElement;
 
@@ -103,6 +104,8 @@ function renderText(info: TextInfo) {
     highlightText(info, display);
     if (info.transitionIn == "fade") {
         fadeIn(display);
+    } else {
+      if (info.transitionIn != "none") difficultScrambleText(display, info.text, info.width ? 300 : 0);
     }
   } else {
     display.dataset.highlightKey = "";

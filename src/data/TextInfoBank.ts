@@ -348,7 +348,7 @@ export const c0_14_1: TextInfo = {
 
 export const c0_15_1: TextInfo = {
   id: "1",
-  text: "One way that newer literature has been able to accomplish this is via the use of postmodern techniques, which subverts the tradiitonal structure of stories and the expectations of readers alike.",
+  text: "One way that newer literature has been able to accomplish this is via the use of postmodern techniques, which subverts the traditional structure of stories and the expectations of readers alike.",
   color: "black",
   size: "60px",
   x: 50,
@@ -935,4 +935,236 @@ export const c1_17_1: TextInfo = {
   width: 90,
   font: "Baskervville, serif",
   boldRanges: [{ start: 74, end: 81 }]
+}
+
+export const c1_18_1: TextInfo = {
+  id: "1",
+  text: "Another common trope that Morrison uses that is practically intertwined with the book’s identity is non-linear storytelling.",
+  color: "black",
+  size: "80px",
+  x: 50,
+  y: 50,
+  width: 90,
+  font: "Baskervville, serif",
+}
+
+export const c1_19_1: TextInfo = {
+  id: "1",
+  text: "often in which the characters mentally encounter them in the present,",
+  color: "black",
+  size: "70px",
+  x: 50,
+  y: 65,
+  width: 90,
+  font: "Baskervville, serif",
+}
+export const c1_19_2: TextInfo = {
+  id: "2",
+  text: "The reader is almost never given events ",
+  color: "black",
+  size: "70px",
+  x: 50,
+  y: 20,
+  width: 90,
+  font: "Baskervville, serif",
+}
+export const c1_19_3: TextInfo = {
+  id: "3",
+  text: "sending themselves into the past.",
+  color: "black",
+  size: "70px",
+  x: 50,
+  y: 85,
+  width: 90,
+  font: "Baskervville, serif",
+}
+export const c1_19_4: TextInfo = {
+  id: "4",
+  text: "in chronological order; they are only given in the order",
+  color: "black",
+  size: "70px",
+  x: 50,
+  y: 40,
+  width: 90,
+  font: "Baskervville, serif",
+}
+export const c1_20_1: TextInfo = {
+  id: "5",
+  text: "In fact, the book additionally uses magical realism to turn this re-experience of a memory into a concrete event that occurs in Beloved with everyone’s memories: in Sethe’s words to Denver, her surviving daughter, a rememory…",
+  color: "black",
+  size: "70px",
+  x: 50,
+  y: 30,
+  width: 90,
+  font: "Baskervville, serif",
+  transitionIn: "fade",
+  highlightRanges: [{ start: 36, end: 51, color: "rgba(70, 136, 211, 0.45)" }, {start: 216, end: 224}],
+}
+export const c1_20_2: TextInfo = {
+  id: "6",
+  text: "A literary technique that semamlessly incorporates magical elements into an otherwise realistic setting",
+  color: "rgba(30, 83, 145, 0.45)",
+  size: "70px",
+  x: 50,
+  y: 75,
+  width: 90,
+  transitionIn: "fade",
+  font: "Baskervville, serif",
+}
+export const c1_21_1: TextInfo = {
+  id: "5",
+  text: "In fact, the book additionally uses magical realism to turn this re-experience of a memory into a concrete event that occurs in Beloved with everyone's memories: in Sethe's words to Denver, her surviving daughter, a rememory…",
+  color: "black",
+  size: "50px",
+  x: 50,
+  y: 20,
+  width: 90,
+  font: "Baskervville, serif",
+  transitionIn: "none",
+  highlightRanges: [{start: 216, end: 224}],
+}
+export const c1_quote3_1: TextInfo = {
+  id: "quote3",
+  text: "“Some things you forget. Other things you never do. But it's not. Places, places are still there. If a house burns down, it's gone, but the place--the picture of it--stays, and not just in my rememory, but out there, in the world. What I remember is a picture floating around out there outside my head. I mean, even if I don't think it, even if I die, the picture of what I did, or knew, or saw is still out there. Right in the place where it happened…Where I was before I came here, that place is real. It's never going away. Even if the whole farm--every tree and grass blade of it dies. The picture is still there and what's more, if you go there--you who never was there--if you go there and stand in the place where it was, it will happen again; it will be there for you, waiting for you”",
+  color: "#485209ff",
+  size: "38px",
+  x: 50,
+  y: 65,
+  width: 90,
+  font: "Baskervville, serif",
+  transitionIn: "fade",
+}
+export const c1_cite_3: TextInfo = {
+  id: "cite3",
+  text: "(48).",
+  color: "black",
+  size: "30px",
+  x: 50,
+  y: 95,
+  width: 80,
+  font: "Baskervville, serif",
+}
+
+export const c1_21_2: TextInfo = {
+  id: "5",
+  text: "Although a “rememory” being able to be interacted with by other people is a supernatural occurrence, and hence should take away from the realism of this story…",
+  color: "black",
+  size: "50px",
+  x: 50,
+  y: 20,
+  width: 90,
+  font: "Baskervville, serif",
+}
+export const c1_quote3_2: TextInfo = {
+  ...c1_quote3_1,
+  transitionIn: "none",
+  highlightRanges: [{ start: 634, end: 792}],
+}
+
+export const c1_22_1: TextInfo = {
+  ...c1_21_2,
+  text: "…it doesn't seem like it. In fact, it's the memory's ability to continually haunt others that further reinforces the despair and trauma that slavery has caused on these individuals and the landscape itself.",
+}
+
+export const c1_quote3_3: TextInfo = {
+  ...c1_quote3_1,
+  transitionIn: "none",
+  highlightRanges: [{ start: 336, end: 616 }],
+}
+
+export const c1_23_1: TextInfo = {
+  ...c1_22_1,
+  text: "The existence of the Sweet Home rememory, that is, the physical manifestation of Sethe's deep emotional scars and trauma from slavery that can persist even beyond its own physical destruction...",
+}
+
+export const c1_quote3_4: TextInfo = {
+  ...c1_quote3_1,
+  transitionIn: "none",
+  highlightRanges: [{ start: 98, end: 230 }],
+  transitionOut: "fade",
+}
+
+export const c1_24_1: TextInfo = {
+  ...c1_22_1,
+  text: "…and the possible re-experience of this trauma by others shows these scars to be practically eternal; the horrific legacy of slavery has caused a permanent unforgettable scar in America's past",
+}
+
+export const c1_25_1: TextInfo = {
+  ...c1_22_1,
+  id: "5",
+  size: "80px",
+  x: 50,
+  y: 50,
+  width: 90,
+  font: "Baskervville, serif",
+  text: "So now let's ask the same question as we did with the no punctuation passage: how would the story feel if we took away the supernatural element of the rememory, and just had it be a normal memory that only exists in Sethe's head?", 
+}
+
+export const c1_26_1: TextInfo = {
+  id: "5",
+  text: "Maybe it could still work, after all in our own day-to-day lives we cannot experience other people's memories, and yet we can still empathize with their experiences.",
+  color: "black",
+  size: "60px",
+  x: 50,
+  y: 50,
+  width: 90,
+  font: "Baskervville, serif",
+}
+
+export const c1_26_1b: TextInfo = {
+  id: "5",
+  text: "Maybe it could still work, after all in our own day-to-day lives we cannot experience other people's memories, and yet we can still empathize with their experiences.",
+  color: "black",
+  size: "50px",
+  x: 50,
+  y: 15,
+  width: 90,
+  font: "Baskervville, serif",
+}
+
+export const c1_26_2: TextInfo = {
+  id: "6",
+  text: "But the point is that the presence of such a phenomena reinforces the idea of violent and rue-filled memories causing generational harm; the idea doesn't need to be completely realistic in order to help the reader understand that idea.",
+  color: "black",
+  size: "70px",
+  x: 50,
+  y: 60,
+  width: 90,
+  font: "Baskervville, serif",
+  boldRanges: [{ start: 137, end: 999 }],
+  transitionOut: "fade",
+}
+
+
+export const c1_27_1: TextInfo = {
+  id: "5",
+  text: "These ideas lead us to another postmodernist book, seemingly completely different in its content...",
+  color: "black",
+  size: "60px",
+  x: 50,
+  y: 15,
+  width: 100,
+}
+
+export const c1_27_2: TextInfo = {
+  id: "2",
+  text: "The Things They Carried",
+  color: "#166c28ff",
+  size: "180px",
+  x: 50,
+  y: 55,
+  width: 100,
+  fontWeight: "bold",
+  transitionIn: "fade",
+}
+export const c1_27_3: TextInfo = {
+  id: "3",
+  text: "by Tim O'Brien",
+  color: "black",
+  size: "60px",
+  x: 50,
+  y: 90,
+  width: 100,
+  transitionIn: "fade",
+  font: "Baskervville, serif",
 }
