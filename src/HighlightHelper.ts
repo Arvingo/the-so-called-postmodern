@@ -77,6 +77,37 @@ export function boldText(info: TextInfo, container: HTMLElement) {
 
   }
 }
+export function createCharacterHighlights(
+  text: string,
+  ch: string,
+  { caseInsensitive = false, color }: { caseInsensitive?: boolean; color?: string } = {}
+): { start: number; end: number; color?: string }[] {
+  if (!text || !ch) return [];
+
+  const src = caseInsensitive ? text.toLocaleLowerCase() : text;
+  const needle = caseInsensitive ? ch.toLocaleLowerCase() : ch;
+
+  const ranges: { start: number; end: number; color?: string }[] = [];
+  let runStart: number | null = null;
+
+  for (let i = 0; i < src.length; i++) {
+    const match = src.substring(i, i + needle.length) === needle;
+    if (match) {
+      if (runStart === null) runStart = i;
+      // advance index by needle.length - 1 so next loop continues after this match
+      i += Math.max(0, needle.length - 1);
+    } else {
+      if (runStart !== null) {
+        ranges.push({ start: runStart, end: i, ...(color ? { color } : {}) });
+        runStart = null;
+      }
+    }
+  }
+  if (runStart !== null) {
+    ranges.push({ start: runStart, end: text.length >= runStart ? runStart + needle.length : runStart, ...(color ? { color } : {}) });
+  }
+  return ranges;
+}
 
 // function revealHighlightPerLine(wrap: HTMLElement, color: string = "rgba(255,239,100,0.45)", preDelay = 705, duration = 700, gap = -500) {
 //   const inner = wrap.querySelector<HTMLElement>(".highlight-inner");

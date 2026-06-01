@@ -7,6 +7,7 @@ export type TextInfo = {
   y?: number;
   width?: number;
   font?: string;
+  opacity?: number;
   fontWeight?: string;
   transitionIn?: string;
   transitionOut?: string;

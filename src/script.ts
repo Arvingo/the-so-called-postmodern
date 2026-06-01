@@ -5,6 +5,7 @@ import type { PageInfo } from "./templateTypes/PageInfo.js";
 import type { TextInfo } from "./templateTypes/TextInfo.js";
 //32: beloved
 //77: tttc
+//132: finale
 let progress = 0; 
 
 const app = document.getElementById("app") as HTMLElement;
@@ -99,6 +100,7 @@ function createTextElement(info: TextInfo) {
 function renderText(info: TextInfo) {
   const display = elements.get(info.id) || createTextElement(info);
   display.classList.add("easing");
+  
   if (info.boldRanges) boldText(info, display);
   if (info.highlightRanges) {
     highlightText(info, display);
@@ -107,18 +109,21 @@ function renderText(info: TextInfo) {
     } else {
       if (info.transitionIn != "none") difficultScrambleText(display, info.text, info.width ? 300 : 0);
     }
+    changeTextProperties(info, info.transitionIn != "scroll");
   } else {
+    changeTextProperties(info, info.transitionIn != "scroll");
     display.dataset.highlightKey = "";
     if (info.transitionIn) {
       if (info.transitionIn === "scramble") {
         if (info.boldRanges) {
-          difficultScrambleText(display, info.text, info.width ? 300 : 0);
+          difficultScrambleText(display, info.text, info.width || 100, info.width ? 300 : 0);
         } else {
-          scrambleText(display, info.text, info.width ? 300 : 0);
+          scrambleText(display, info.text, info.width || 100, info.width ? 300 : 0);
         }
         
       } else if (info.transitionIn === "none") {
         display.textContent = info.text;
+        if (info.boldRanges) boldText(info, display);
       } else if (info.transitionIn == "fade") {
         fadeIn(display);
         display.textContent = info.text;
@@ -131,16 +136,16 @@ function renderText(info: TextInfo) {
       }
     } else {
       if (info.boldRanges) {
-          difficultScrambleText(display, info.text, info.width ? 300 : 0);
+          difficultScrambleText(display, info.text, info.width || 100, info.width ? 300 : 0);
         } else {
-          scrambleText(display, info.text, info.width ? 300 : 0);
+          scrambleText(display, info.text, info.width || 100, info.width ? 300 : 0);
         }
     }
   }
   
   
   
-  changeTextProperties(info, info.transitionIn != "scroll");
+  
 }
 
 function bootRenderText(info: TextInfo) { 
@@ -169,6 +174,7 @@ function changeTextProperties(info: TextInfo, allowTransition = true) {
   } else {
     display.style.width = `${safe.width}vw`;
   }
+  display.style.opacity = safe.opacity ? safe.opacity.toString() : "1";
   display.style.maxWidth = `${safe.width}vw`;
   display.style.fontFamily = safe.font;
   display.style.fontWeight = safe.fontWeight;
@@ -301,15 +307,30 @@ function difficultScrambleText(element: HTMLElement, newText: string, width: num
     }
   }, intervalTime);
 }
-function scrambleText(element: HTMLElement, newText: string, duration = 300) {
+function scrambleText(element: HTMLElement, newText: string, newWidth = 100, duration = 300) {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*-_=+[]{}|;:,.<>?";
   const intervalTime = 30;
   const oldText = element.textContent || "";
   const totalFrames = Math.floor(duration / intervalTime);
   let frame = 0;
-  
 
+  const computedMax = getComputedStyle(element).maxWidth;
+  let oldMaxVW: number;
+  if (!computedMax || computedMax === "none") {
+    const rectW = element.getBoundingClientRect().width || 0;
+    oldMaxVW = (rectW / window.innerWidth) * 100;
+  } else {
+    const px = parseFloat(computedMax.replace("px", "")) || 0;
+    oldMaxVW = (px / window.innerWidth) * 100;
+  }
+  
+  const widthDelta = newWidth - oldMaxVW;
   const interval = setInterval(() => {
+    const t = Math.min(1, frame / totalFrames);
+    const easedT = 1 - Math.pow(1 - t, 3); // ease-out (cubic)
+    const curWidthVW = oldMaxVW + widthDelta * easedT;
+    if (oldText != "") element.style.maxWidth = curWidthVW + "vw";
+
     let output = "";
     let curLen = oldText.length + (newText.length - oldText.length) * (frame / totalFrames);
     for (let i = 0; i < curLen; i++) {
