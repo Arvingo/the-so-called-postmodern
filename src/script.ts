@@ -6,7 +6,8 @@ import type { TextInfo } from "./templateTypes/TextInfo.js";
 //32: beloved
 //77: tttc
 //132: finale
-let progress = 0; 
+let progress = 156; 
+let prevProgress = 156;
 
 const app = document.getElementById("app") as HTMLElement;
 
@@ -20,7 +21,7 @@ function showCurrentText(initial = false) {
   if (initial) {
     prevInfo = { textBlocks: [] };
   } else {
-    prevInfo = pageInfos[progress - 1] || pageInfos[pageInfos.length - 1];
+    prevInfo = pageInfos[prevProgress] || pageInfos[pageInfos.length - 1];
   }
   
   flushOldText(pageInfos[progress], prevInfo);
@@ -36,7 +37,7 @@ function showCurrentText(initial = false) {
   if (curPageInfo.bgColor) {
     changeBackgroundColor(curPageInfo.bgColor, curPageInfo);
   }
-  progress++;
+
 }
 
 function changeBackgroundColor(color: string, pageInfo: PageInfo) {
@@ -156,7 +157,6 @@ function bootRenderText(info: TextInfo) {
 }
 
 function changeTextProperties(info: TextInfo, allowTransition = true) {
-  console.log(window.innerWidth);
   const display = elements.get(info.id) || createTextElement(info);
   display.style.color = info.color;
   if (window.innerWidth / 1536 < window.innerHeight / 864) {
@@ -425,11 +425,28 @@ document.body.addEventListener("keydown", (e) => {
     goToNext();
   }
 });
+document.body.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    goToPrev();
+  }
+});
 function goToNext() {
+  prevProgress = progress;
+  progress++;
+  if (progress >= pageInfos.length) {
+    progress = 0;
+  }
   showCurrentText();
 
   // loop back to start
-  if (progress >= pageInfos.length) {
-    progress = 0;
+  
+  
+}
+function goToPrev() {
+  if (progress >= 1) {
+    prevProgress = progress;
+    progress--;
+    showCurrentText();
   }
 }

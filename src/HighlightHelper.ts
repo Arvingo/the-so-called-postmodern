@@ -57,13 +57,19 @@ export function highlightText(info: TextInfo, container: HTMLElement) {
 }
 export function boldText(info: TextInfo, container: HTMLElement) {
   const text = info.text || "";
-  const boldRanges = info.boldRanges as { start: number; end: number }[] | undefined;
+  const boldRanges = info.boldRanges as { start: number; end: number; color?: string }[] | undefined;
   const segments = splitByHighlights(text, boldRanges);
   container.innerHTML = "";
   for (const seg of segments) {
     if (seg.highlighted) {
       const span = document.createElement("span");
-      span.classList.add("bold");
+      if (!seg.color) {
+        span.classList.add("bold");
+      } else if (seg.color == "italic") {
+        span.classList.add("italic");
+      } else {
+        span.classList.add("bold");
+      }
       span.style.display = "inline";
       span.textContent = seg.text;
       container.appendChild(span);

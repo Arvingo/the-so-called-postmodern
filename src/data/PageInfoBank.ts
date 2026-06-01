@@ -5,8 +5,8 @@ import * as TextInfoBank from "./TextInfoBank";
 function repeatedInfo(textInfo: TextInfo) {
   return {...textInfo, transitionIn: "none"};
 }
-function faintInfo(textInfo: TextInfo) {
-  return {...textInfo, opacity: 0.3};
+function faintInfo(textInfo: TextInfo, opacity = 0.3) {
+  return {...textInfo, opacity: opacity};
 }
 export const pageInfos: PageInfo[] = [
   {
@@ -613,8 +613,151 @@ export const pageInfos: PageInfo[] = [
     textBlocks: [TextInfoBank.c2_26_1],
     bgColor: "#000000ff",
   },
+  {
+    textBlocks: [TextInfoBank.c3_1_1, TextInfoBank.c3_1_2, TextInfoBank.c3_1_3, TextInfoBank.c3_1_4a],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_1_1b, TextInfoBank.c3_1_2b, TextInfoBank.c3_1_3b, TextInfoBank.c3_1_4],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_2_1, TextInfoBank.c3_2_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_2_1b, TextInfoBank.c3_2_2b, TextInfoBank.c3_2_3],
+    bgColor: "#d2dbabff",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_3_1, TextInfoBank.c3_3_2],
+    bgColor: "#d2dbabff",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_4_1],
+    bgColor: "#d2dbabff",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_4_1b, TextInfoBank.c3_4_2],
+    bgColor: "#d2dbabff",
+  },
+  {
+    textBlocks: [faintInfo(repeatedInfo(TextInfoBank.c3_4_1b), 0.2), faintInfo(repeatedInfo(TextInfoBank.c3_4_2), 0.2), TextInfoBank.c3_5_1],
+    bgColor: "#d2dbabff",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_6_1],
+    bgColor: "#d2dbabff",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_7_1],
+    bgColor: "#d2dbabff",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_8_1],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_8_1), TextInfoBank.c3_8_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_9_1, TextInfoBank.c3_9_2a],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_9_1b, TextInfoBank.c3_9_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_10_1, TextInfoBank.c3_10_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_10_1), TextInfoBank.c3_10_2b, TextInfoBank.c3_10_3],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_10_1), repeatedInfo(TextInfoBank.c3_10_2b), TextInfoBank.c3_10_3b],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_11_1, TextInfoBank.c3_11_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_11_1), TextInfoBank.c3_11_2b, TextInfoBank.c3_11_3],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_11_1), repeatedInfo(TextInfoBank.c3_11_2b), TextInfoBank.c3_11_3b],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_12_1, TextInfoBank.c3_12_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_12_1), TextInfoBank.c3_12_2b, TextInfoBank.c3_12_3],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_12_1), repeatedInfo(TextInfoBank.c3_12_2b), TextInfoBank.c3_12_3b],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_13_1, TextInfoBank.c3_13_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_14_1],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_14_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_15_1],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_15_1), TextInfoBank.c3_15_2],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_15_1), TextInfoBank.c3_15_2b],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_15_1), TextInfoBank.c3_15_2c],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_15_1), TextInfoBank.c3_15_2d],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_15_1), TextInfoBank.c3_15_2e],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [repeatedInfo(TextInfoBank.c3_15_1), TextInfoBank.c3_15_2f],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_16_1],
+    bgColor: "#f0f0f0",
+  },
+  {
+    textBlocks: [TextInfoBank.c3_16_1b, TextInfoBank.c3_16_2],
+    bgColor: "#f0f0f0",
+  },
 
-  
+
+
+
+
   
 
 

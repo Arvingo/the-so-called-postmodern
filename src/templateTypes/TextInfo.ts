@@ -12,5 +12,5 @@ export type TextInfo = {
   transitionIn?: string;
   transitionOut?: string;
   highlightRanges?: { start: number; end: number; color?: string }[];
-  boldRanges?: { start: number; end: number }[];
+  boldRanges?: { start: number; end: number; color?: string }[];
 };

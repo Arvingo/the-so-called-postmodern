@@ -2077,4 +2077,473 @@ export const c2_26_1: TextInfo = {
   font: "Caladea, serif",
 }
 
+export const c3_1_1: TextInfo = {
+  id: "1",
+  text: "So far, we've covered two novels.",
+  size: "120px",
+  color: "black",
+  x: 50,
+  y: 40,
+  width: 90,
+  
+}
+export const c3_1_2: TextInfo = {
+  id: "2",
+  text: "Beloved",
+  size: "120px",
+  color: "red",
+  x: 25,
+  y: 80,
+  width: 90,
+  font: "Baskerville, serif",
+  fontWeight: "bold",
+  transitionOut: "fade",
+}
+
+export const c3_1_3: TextInfo = {
+  id: "3",
+  text: "The Things They Carried",
+  size: "120px",
+  color: "darkgreen",
+  x: 70,
+  y: 80,
+  width: 50,
+  font: "Caladea, serif",
+  fontWeight: "bold",
+  transitionOut: "fade",
+}
+
+export const c3_1_1b: TextInfo = {
+  ...c3_1_1,
+  y: -50,
+  transitionIn: "none",
+}
+
+export const c3_1_2b: TextInfo = {
+  ...c3_1_2,
+  y: 30,
+  transitionIn: "none",
+}
+
+export const c3_1_3b: TextInfo = {
+  ...c3_1_3,
+  y: 30,
+  transitionIn: "none",
+}
+export const c3_1_4: TextInfo = {
+  id: "4",
+  text: "They both use structures of a book itself to bring out their emotions and mood upon the reader, whether it is the lack of punctuation, or repetitive and bland language in a book surrounding the Vietnam war.",
+  size: "60px",
+  color: "black",
+  x: 50,
+  y: 70,
+  width: 90,
+  transitionIn: "none",
+}
+export const c3_1_4a: TextInfo = {
+  ...c3_1_4,
+  y: 120,
+  transitionIn: "none",
+}
+export const c3_2_1: TextInfo = {
+  id: "1",
+  text: "Most of us aren't writers though, so why should we care about the way the text is written?",
+  size: "90px",
+  color: "black",
+  x: 50,
+  y: 30,
+  width: 90,
+}
+export const c3_2_2: TextInfo = {
+  id: "4",
+  text: "Let's take a quick look at one more source, but this time it isn't a book…",
+  size: "90px",
+  color: "black",
+  x: 50,
+  y: 70,
+  width: 90,
+}
+export const c3_2_1b: TextInfo = {
+  ...c3_2_1,
+  y: 20,
+  size: "60px",
+  transitionIn: "none",
+}
+export const c3_2_2b: TextInfo = {
+  ...c3_2_2,
+  y: 40,
+  size: "60px",
+  transitionIn: "none",
+}
+export const c3_2_3: TextInfo = {
+  id: "3",
+  text: "It's the movie 12 Years a Slave, and specifically about one of the most harrowing scenes in that movie.",
+  size: "90px",
+  color: "#4d5917ff",
+  x: 50,
+  y: 70,
+  width: 90,
+  boldRanges: [{ start: 15, end: 31 }],
+}
+export const c3_3_1: TextInfo = {
+  id: "1",
+  text: "As a punishment for attacking a plantation owner, the main character, Solomon Northup is punished by being hung by a tree with his toes barely touching the ground for a whole day.",
+  color: "#000000ff",
+  size: "60px",
+  x: 50,
+  y: 30,
+  width: 90,
+}
+export const c3_3_2: TextInfo = {
+  id: "2",
+  text: "The uncomfortability and memorability from the scene comes from a single, seemingly simple change compared to most shots in film…",
+  color: "#000000ff",
+  size: "60px",
+  x: 50,
+  y: 70,
+  width: 90,
+}
+export const c3_4_1: TextInfo = {
+  id: "1",
+  text: "Its",
+  color: "#000000ff",
+  size: "150px",
+  x: 50,
+  y: 50,
+  width: 90,
+}
+export const c3_4_1b: TextInfo = {
+  id: "1",
+  text: "Its",
+  color: "#000000ff",
+  size: "50px",
+  x: 50,
+  y: 30,
+  width: 90,
+  transitionOut: "fade",
+}
+export const c3_4_2: TextInfo = {
+  id: "2",
+  text: "Length",
+  color: "#bd9a28ff",
+  size: "450px",
+  x: 50,
+  y: 50,
+  width: 100,
+  fontWeight: "bold",
+  transitionOut: "fade",
+}
+
+export const c3_5_1: TextInfo = {
+  id: "3",
+  text: "The shot lasts longer than 3 minutes without any cuts or movements, keeping the struggling Solomon in view for its entirety, and where the background and individuals around him seem completely unbothered by his presence, continuing with their work.",
+  color: "#000000ff",
+  size: "70px",
+  x: 50,
+  y: 50,
+  width: 80,
+  highlightRanges: [{ start: 15, end: 36}],
+}
+
+
+export const c3_6_1: TextInfo = {
+  id: "3",
+  text: "The shot would obviously lose most of its power, if for instance, the shot only lasted 10 seconds, and a caption with “1 day later” showed up to demonstrate the time gap.",
+  color: "#000000ff",
+  size: "70px",
+  x: 50,
+  y: 50,
+  width: 80,
+}
+export const c3_7_1: TextInfo = {
+  id: "3",
+  text: "Just like in the literature we analyzed here, a feature of the medium was used to bolster its purpose on the reader, here attempting to share Solomon's uncomfortability to the reader as much as possible.",
+  color: "#000000ff",
+  size: "70px",
+  x: 50,
+  y: 60,
+  width: 80,
+  boldRanges: [{ start: 46, end: 69}],
+}
+export const c3_8_1: TextInfo = {
+  id: "3",
+  text: "Now, what if we tried to translate this scene over to a book form...",
+  color: "#000000ff",
+  size: "90px",
+  x: 50,
+  y: 30,
+  width: 80,
+}
+export const c3_8_2: TextInfo = {
+  id: "1",
+  text: "...while trying to keep the same emotional impact and purpose of the scene intact?",
+  color: "#000000ff",
+  size: "90px",
+  x: 50,
+  y: 70,
+  width: 80,
+}
+export const c3_9_1: TextInfo = {
+  id: "1",
+  text: "We know better now than just describing the scene with words...",
+  color: "#000000ff",
+  size: "90px",
+  x: 50,
+  y: 50,
+  width: 50,
+}
+export const c3_9_1b: TextInfo = {
+  ...c3_9_1,
+  x: -50,
+  transitionIn: "none",
+}
+export const c3_9_2: TextInfo = {
+  id: "2",
+  text: "Just like how Beloved used the lack of punctuation to create a subconscious effect on the reader, or just like how The Things They Carried used a meta-narrative of text to help develop deeper themes of storytelling, we can attempt to brainstorm how we can take the different aspects of the medium of text to evoke a similar effect.",
+  color: "#000000ff",
+  size: "60px",
+  x: 50,
+  y: 50,
+  width: 90,
+  transitionIn: "none",
+  boldRanges: [{ start: 14, end: 21, color: "italic" }, { start: 115, end: 138, color: "italic" }, { start: 245, end: 999}],
+}
+export const c3_9_2a: TextInfo = {
+  ...c3_9_2,
+  x: 150,
+  transitionIn: "none",
+}
+export const c3_10_1: TextInfo = {
+  id: "A1",
+  text: "Idea 1",
+  color: "#000000ff",
+  size: "90px",
+  x: 50,
+  y: 5,
+  width: 80,
+  fontWeight: "bold",
+}
+export const c3_10_2: TextInfo = {
+  id: "3",
+  text: "Leave a bunch of empty pages in the book between the description of the initial hanging, to simulate the excruciating time that Solomon was left close to death while hanging from the tree.",
+  color: "#000000ff",
+  size: "60px",
+  x: 50,
+  y: 50,
+  width: 80,
+}
+export const c3_10_2b: TextInfo = {
+  ...c3_10_2,
+  size: "40px",
+  y: 25,
+  transitionIn: "none",
+}
+export const c3_10_3: TextInfo = {
+  id: "4",
+  text: "While in theory this idea would be the closest that would get to the aspect of the movie holding the same shot for 3 minutes...",
+  color: "#0d7724ff",
+  size: "75px",
+  x: 50,
+  y: 65,
+  width: 90,
+}
+export const c3_10_3b: TextInfo = {
+  ...c3_10_3,
+  text: "In a book, you can flip ahead! As in, the reader would not simply wait at each empty page to ponder, they would simply flip through pages until text reappears again.",
+  color: "#a60d0dff",
+  y: 70,
+}
+export const c3_11_1: TextInfo = {
+  id: "A1",
+  text: "Idea 2",
+  color: "#000000ff",
+  size: "90px",
+  x: 50,
+  y: 5,
+  width: 80,
+  fontWeight: "bold",
+}
+
+export const c3_11_2: TextInfo = {
+  id: "3",
+  text: "Continually use the thoughts of Solomon to fill in the space, perhaps using a stream of consciousness style to simulate the mental state of Solomon as he is hanging from the tree, and the passage of time.",
+  color: "#000000ff",
+  size: "60px",
+  x: 50,
+  y: 50,
+  width: 80,
+}
+export const c3_11_2b: TextInfo = {
+  ...c3_11_2,
+  size: "40px",
+  y: 25,
+  transitionIn: "none",
+}
+export const c3_11_3: TextInfo = {
+  id: "4",
+  text: "In this iteration, the reader would be coerced to still continue reading at a controllable pace, and thus the length of the thoughts could be used to simulate the 3 minute time…",
+  color: "#0d7724ff",
+  size: "70px",
+  x: 50,
+  y: 65,
+  width: 90,
+}
+export const c3_11_3b: TextInfo = {
+  ...c3_11_3,
+  text: "…but the tradeoff is that we focus much more on Solomon rather than another major aspect of the shot, which is the fact that no one around him is paying attention to him for the whole day.",
+  color: "#a60d0dff",
+  boldRanges: [{ start: 125, end: 999}],
+}
+export const c3_12_1: TextInfo = {
+  id: "A1",
+  text: "Idea 3",
+  color: "#000000ff",
+  size: "90px",
+  x: 50,
+  y: 5,
+  width: 80,
+  fontWeight: "bold",
+}
+
+export const c3_12_2: TextInfo = {
+  id: "3",
+  text: "Take a 3rd person POV and write passages about the surroundings of Solomon, almost completely disregarding Solomon altogether, and perhaps doing PoV shifts to surrounding characters, where their perception of their work and their surroundings also omits Solomon.",
+  color: "#000000ff",
+  size: "50px",
+  x: 50,
+  y: 50,
+  width: 80,
+}
+export const c3_12_2b: TextInfo = {
+  ...c3_12_2,
+  size: "30px",
+  y: 25,
+  transitionIn: "none",
+}
+export const c3_12_3: TextInfo = {
+  id: "4",
+  text: "This is the best I could come up with; by focusing on the surroundings for the entirety of the simulated wait, Solomon's fate is left suspsended.",
+  color: "#0d7724ff",
+  size: "90px",
+  x: 50,
+  y: 65,
+  width: 90,
+}
+export const c3_12_3b: TextInfo = {
+  ...c3_12_3,
+  text: "The changes in PoV would also then serve in this purpose: by taking the pov of another character, the author seemingly tells the reader that the original character’s thoughts and emotions are no longer important to the story, which is ironic to the reader but not to the other enslaved individuals and white people surrounding him, as they do in fact ignore him.",
+  size: "50px",
+}
+export const c3_13_1: TextInfo = {
+  id: "4",
+  text: "Nevertheless, notice how in this exercise we had to explicitly focus on the use of our medium to create the desired effect on the reader.",
+  color: "#000000ff",
+  size: "50px",
+  x: 50,
+  y: 30,
+  width: 90,
+  boldRanges: [{ start: 52, end: 999 }],
+}
+export const c3_13_2: TextInfo = {
+  id: "5",
+  text: "And in fact, almost all of the choices I made in my brainstorming here are what would be considered postmodern literary techniques.",
+  color: "#000000ff",
+  size: "50px",
+  x: 50,
+  y: 80,
+  width: 90,
+  boldRanges: [{ start: 100, end: 999 }],
+}
+
+export const c3_14_1: TextInfo = {
+  id: "5",
+  text: "So then what does this say about the effect of posmodernism as a whole in literature?",
+  color: "#000000ff",
+  size: "120px",
+  x: 50,
+  y: 50,
+  width: 90,
+}
+
+export const c3_14_2: TextInfo = {
+  id: "5",
+  text: "Postmodernism was the required literary revolution in order to break free form traditional writing and to be able to use the medium in as effective of a way as other forms of media have been able to.",
+  color: "#000000ff",
+  size: "80px",
+  x: 50,
+  y: 50,
+  width: 90,
+}
+export const c3_15_1: TextInfo = {
+  id: "5",
+  text: "So, no matter what creative piece you end up making in the future...",
+  color: "#000000ff",
+  size: "100px",
+  x: 50,
+  y: 30,
+  width: 90,
+}
+export const c3_15_2: TextInfo = {
+  id: "1",
+  text: "An Art Piece",
+  color: "#941e1eff",
+  size: "130px",
+  x: 50,
+  y: 70,
+  width: 90,
+  fontWeight: "bold",
+}
+export const c3_15_2b: TextInfo = {
+  ...c3_15_2,
+  text: "A Mini-Documentary",
+  color: "#0a4b19ff",
+}
+export const c3_15_2c: TextInfo = {
+  ...c3_15_2,
+  text: "A Music Composition",
+  color: "#8e2c5eff",
+}
+export const c3_15_2d: TextInfo = {
+  ...c3_15_2,
+  text: "An Animation",
+  color: "#3295b0ff",
+}
+export const c3_15_2e: TextInfo = {
+  ...c3_15_2,
+  text: "A Poem",
+  color: "#5e841dff",
+}
+export const c3_15_2f: TextInfo = {
+  ...c3_15_2,
+  text: "A Newspaper Article",
+  color: "#2539aaff",
+}
+export const c3_16_1: TextInfo = {
+  id: "1",
+  text: "Don't be afraid to experiment with the structure of your piece, and to push the boundaries of the medium to create an ever more impressionist piece!",
+  color: "#000000ff",
+  size: "100px",
+  x: 50,
+  y: 50,
+  width: 90,
+}
+export const c3_16_1b: TextInfo = {
+  ...c3_16_1,
+  y: 20,
+  size: "50px",
+  transitionIn: "none",
+}
+export const c3_16_2: TextInfo = {
+  id: "2",
+  text: "Thank You!",
+  color: "#000000ff",
+  size: "150px",
+  x: 50,
+  y: 50,
+  width: 90,
+  fontWeight: "bold",
+  transitionIn: "fade",
+}
+
+
 

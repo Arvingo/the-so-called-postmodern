@@ -35,6 +35,9 @@ div.textBlock {
 .bold {
   font-weight: 700;
 }
+.italic {
+  font-style: italic;
+}
 
 /* background element placed behind the text */
 .textBlock .highlight .line-bg {
