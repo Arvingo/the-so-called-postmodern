@@ -3,11 +3,13 @@ import { pageInfos } from "./data/PageInfoBank.js";
 import { boldText, highlightText } from "./HighlightHelper.js";
 import type { PageInfo } from "./templateTypes/PageInfo.js";
 import type { TextInfo } from "./templateTypes/TextInfo.js";
+//0: title
 //32: beloved
 //77: tttc
 //132: finale
-let progress = 156; 
-let prevProgress = 156;
+//168: end
+let progress = 0; 
+let prevProgress = 0;
 
 const app = document.getElementById("app") as HTMLElement;
 
